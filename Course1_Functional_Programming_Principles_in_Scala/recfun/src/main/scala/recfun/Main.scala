@@ -19,13 +19,13 @@ object Main {
     * Exercise 2
     */
   def balance(chars: List[Char]): Boolean = {
-    def balanced(chars: List[Char], open:Int): Boolean = {
-      if(chars.isEmpty) open == 0
+    def balanced(chars: List[Char], open: Int): Boolean = {
+      if (chars.isEmpty) open == 0
       else {
-        if(open < 0) false
+        if (open < 0) false
         else {
-          if(chars.head == '(') balanced(chars.tail, open + 1 )
-          else if(chars.head == ')') balanced(chars.tail, open - 1)
+          if (chars.head == '(') balanced(chars.tail, open + 1)
+          else if (chars.head == ')') balanced(chars.tail, open - 1)
           else balanced(chars.tail, open)
         }
       }
@@ -38,5 +38,9 @@ object Main {
   /**
     * Exercise 3
     */
-  def countChange(money: Int, coins: List[Int]): Int = ???
+  def countChange(money: Int, coins: List[Int]): Int = {
+    if (money == 0) 1
+    else if (money > 0 && !coins.isEmpty) countChange(money-coins.head, coins) + countChange(money, coins.tail)
+    else 0
+  }
 }
